@@ -1,0 +1,236 @@
+:root {
+  --primary-color: #ff6b6b;
+  --background-dark: #0f0c29;
+  --background-light: #302b63;
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --text-color: #ffffff;
+  --shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  --media-height: 400px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(
+    135deg,
+    var(--background-dark),
+    var(--background-light)
+  );
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+  animation: twinkle 10s infinite;
+}
+.stars::before,
+.stars::after {
+  content: "";
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 100px 50px 0 rgba(255, 255, 255, 0.3),
+    200px 300px 0 rgba(255, 255, 255, 0.4),
+    300px 100px 0 rgba(255, 255, 255, 0.2),
+    400px 400px 0 rgba(255, 255, 255, 0.3),
+    500px 200px 0 rgba(255, 255, 255, 0.4),
+    600px 500px 0 rgba(255, 255, 255, 0.2);
+    animation: twinkle 5s infinite alternate;
+}
+
+@keyframes twinkle{
+    0%{opacity: 0.5;}
+    100%{opacity: 1;}
+}
+
+.container{
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+
+}
+
+h1{
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px var(--primary-color);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+    from{text-shadow: 0 0 10px var(--primary-color);}
+    to{ text-shadow: 0 0 20px var(--primary-color),0 0 30px var(--primary-color);}
+}
+
+.controls{
+    margin: 20px 0 ;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+input[type = "date"] {
+    padding: 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type = "date"]:hover{
+transform: translateY(-2px);
+box-shadow: var(--shadow);
+}
+button{
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff6b6b;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover{
+    transform: translateY(-2px);
+    background-color: #eb5e5e;
+    box-shadow: var(--shadow);
+}
+.apod-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 30px;
+      box-shadow: var(--shadow);
+      animation: fadeIn 1s ease-in;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+@keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+.apod-card img,
+    .apod-card iframe {
+      width: 100%;
+      max-width: 100%;
+      height: var(--media-height);
+      object-fit: contain; /* Ensures proportional scaling */
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin: 10px 0; /* Reduced margin for closer text */
+      transition: transform 0.3s;
+    }
+
+.apod-card img:hover, .apod-card iframe:hover{
+  transform: scale(1.02);
+}
+
+.apod-card h2 {
+      font-size: 2.2rem;
+      margin: 10px 0; /* Tight spacing */
+      text-align: center;
+    }
+
+.apod-card p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin: 5px 0; /* Minimal margin for close text */
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+    }
+
+.loader{
+  display: none;
+  width: 60px;
+  height: 60px;
+  margin: 20px auto;
+  position: relative;
+}
+.loader::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 8px solid transparent;
+  border-top: 8px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(360deg);}
+}
+
+.error{
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+@media (max-width:768px){
+  h1 {
+        font-size: 2.5rem;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      input[type="date"], button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .apod-card h2 {
+        font-size: 1.8rem;
+      }
+
+      .apod-card p {
+        font-size: 1rem;
+      }
+
+      .apod-card img,
+      .apod-card iframe {
+        height: 250px; /* Smaller height for mobile */
+      }
+    
+}

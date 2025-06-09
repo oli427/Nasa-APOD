@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="stars">
+
+    </div>
+    <div class="container">
+        <h1> Space Explorer-NASA</h1>
+                <div class="controls">
+                    <input type="date" id="dateInput" max="">
+                    <button onclick="fetchAPOD()">Explore</button>
+                    <button onclick="fetchRandomAPOD()">Random Date</button>
+                </div>
+                <div id="loader" class="loader">
+
+                </div>
+                <div id="error" class="error">
+
+                </div>
+                <div class="apod-card" id="apodCard">
+                    <h2 id="apodTitle"></h2>
+                    <div id="mediaContainer">
+                        <img src="" alt="astronomic picture of the day" id="apodImage">
+                    </div>
+                    <p id="apodExplanation"></p>
+                    <p><strong>Date:</strong> <span id="apodDate"></span></p>
+                </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
